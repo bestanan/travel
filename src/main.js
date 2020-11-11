@@ -5,9 +5,11 @@ import App from './App'
 import router from './router'
 
 // 引入初始化样式
-import './assets/styles/reset.css'
+import 'styles/reset.css'
 // 解决移动端 1px 边框问题
-import './assets/styles/border.css'
+import 'styles/border.css'
+// 引入 iconfont
+import 'styles/iconfont.css'
 // 使用 fastclick 解决移动端 click 延迟 300ms 执行
 import fastClick from 'fastclick'
 
