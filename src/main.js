@@ -4,7 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// 引入初始化样式
+import './assets/styles/reset.css'
+// 解决移动端 1px 边框问题
+import './assets/styles/border.css'
+// 使用 fastclick 解决移动端 click 延迟 300ms 执行
+import fastClick from 'fastclick'
+
 Vue.config.productionTip = false
+fastClick.attach(document.body)
 
 /* eslint-disable no-new */
 new Vue({
