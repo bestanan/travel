@@ -90,6 +90,7 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variable.styl'
+  @import '~styles/mixins.styl'
   // .icons
   //   height 0
   //   padding-bottom 50%
@@ -113,8 +114,8 @@ export default {
         bottom .44rem
         .icon-img-content
           height 100%
-          display: block;
-          margin: 0 auto;
+          display block
+          margin 0 auto
       .icon-desc
         position absolute
         left 0
@@ -124,7 +125,5 @@ export default {
         line-height .44rem
         text-align center
         color $blackTextColor
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        ellipsis()
 </style>
