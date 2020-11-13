@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="title">猜你喜欢</div>
+    <div class="title">周末去哪儿</div>
     <ul>
       <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
-        <img class="item-img" :src="item.imgUrl" alt="">
+        <div class="item-img-wrapper">
+          <img class="item-img" :src="item.imgUrl" alt="">
+        </div>
+        
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
           <p class="item-desc">{{item.desc}}</p>
-          <button class="item-btn">查看详情</button>
         </div>
       </li>
     </ul>
@@ -17,25 +19,25 @@
 
 <script>
 export default {
-  name: 'HomeRecommend',
+  name: 'HomeWeekend',
   data () {
     return {
       recommendList: [
         {
           id: '01',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/2010/ae/ae92c630b2178efba3.water.jpg_200x200_cd3d6eb2.jpg',
+          imgUrl: 'http://img1.qunarzz.com/sight/source/1507/d9/2ddc7652fdba16.jpg_r_640x214_5e62f1a3.jpg',
           title: '深圳欢乐谷',
           desc: '亚太十大主题公园”之一，综合海陆空三栖游乐项目，爱刺激的人的天堂，有胆你就来。 '
         },
         {
           id: '02',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/2010/ae/ae92c630b2178efba3.water.jpg_200x200_cd3d6eb2.jpg',
+          imgUrl: 'http://img1.qunarzz.com/sight/source/1507/d9/2ddc7652fdba16.jpg_r_640x214_5e62f1a3.jpg',
           title: '深圳欢乐谷',
           desc: '亚太十大主题公园”之一，综合海陆空三栖游乐项目，爱刺激的人的天堂，有胆你就来。 '
         },
         {
           id: '03',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/2010/ae/ae92c630b2178efba3.water.jpg_200x200_cd3d6eb2.jpg',
+          imgUrl: 'http://img1.qunarzz.com/sight/source/1507/d9/2ddc7652fdba16.jpg_r_640x214_5e62f1a3.jpg',
           title: '深圳欢乐谷',
           desc: '亚太十大主题公园”之一，综合海陆空三栖游乐项目，爱刺激的人的天堂，有胆你就来。 '
         }
@@ -48,21 +50,18 @@ export default {
 <style lang="stylus" scoped>
   @import '~styles/mixins.styl'
   .title
-    margin-top .2rem
     line-height .8rem
     background #eee
     text-indent .2rem
   .item
-    display flex
-    height 2.3rem
-    .item-img
-      width 1.9rem
-      height 1.9rem
-      padding .2rem
+    .item-img-wrapper
+      overflow hidden
+      height 0
+      padding-bottom 33.4%
+      .item-img
+        width 100%
     .item-info
-      flex 1
-      min-width 0 // 使 ellipsis 生效
-      padding .3rem .1rem
+      padding .1rem .24rem
       .item-title
         line-height .54rem
         font-size .32rem
@@ -70,11 +69,4 @@ export default {
         line-height .4rem
         color #ccc
         ellipsis()
-      .item-btn
-        line-height .44rem
-        margin-top .16rem
-        background #ff9300
-        padding 0 .2rem
-        border-radius .06rem
-        color #fff
 </style>
