@@ -99,7 +99,9 @@ export default {
   .icons >>> .swiper-container
     height 0
     padding-bottom 50%
-    background #eee
+    // background #eee
+  .icons
+    margin-top .1rem
     .icon
       position relative
       width 25%
