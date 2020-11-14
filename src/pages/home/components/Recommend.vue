@@ -2,7 +2,7 @@
   <div>
     <div class="title">猜你喜欢</div>
     <ul>
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item of list" :key="item.id">
         <img class="item-img" :src="item.imgUrl" alt="">
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
@@ -17,29 +17,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendList: [
-        {
-          id: '01',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/2010/ae/ae92c630b2178efba3.water.jpg_200x200_cd3d6eb2.jpg',
-          title: '深圳欢乐谷',
-          desc: '亚太十大主题公园”之一，综合海陆空三栖游乐项目，爱刺激的人的天堂，有胆你就来。 '
-        },
-        {
-          id: '02',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/2010/ae/ae92c630b2178efba3.water.jpg_200x200_cd3d6eb2.jpg',
-          title: '深圳欢乐谷',
-          desc: '亚太十大主题公园”之一，综合海陆空三栖游乐项目，爱刺激的人的天堂，有胆你就来。 '
-        },
-        {
-          id: '03',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/2010/ae/ae92c630b2178efba3.water.jpg_200x200_cd3d6eb2.jpg',
-          title: '深圳欢乐谷',
-          desc: '亚太十大主题公园”之一，综合海陆空三栖游乐项目，爱刺激的人的天堂，有胆你就来。 '
-        }
-      ]
-    }
+  props: {
+    list: Array
   }
 }
 </script>
