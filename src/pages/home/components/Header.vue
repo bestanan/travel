@@ -5,11 +5,14 @@
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe632;</span>
-      输入城市 / 景点 / 游玩主题</div>
-    <div class="header-right">
-      {{city}}
-      <span class="iconfont arrow-icon">&#xe64a;</span>
+      输入城市 / 景点 / 游玩主题
     </div>
+    <router-link to="/city">
+      <div class="header-right">
+        {{city}}
+        <span class="iconfont arrow-icon">&#xe64a;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -27,8 +30,8 @@ export default {
   // 1 rem = html font-size = 50px
   .header
     display flex
-    height .86rem // 其实是 43px
-    line-height .86rem
+    height $headerHeight // 其实是 43px
+    line-height $headerHeight
     background $bgColor
     color #fff
     .header-left
@@ -51,6 +54,7 @@ export default {
       width 1.24rem
       float right
       text-align center
+      color #fff
       .arrow-icon
         font-size .24rem
 </style>
