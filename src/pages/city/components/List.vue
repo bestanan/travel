@@ -81,7 +81,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import '~styles/variable.styl'
   .border-topbottom
     &:before
       border-color #ccc
