@@ -7,7 +7,7 @@
       <router-link to="/">
         <div class="iconfont header-fixed-icon">&#xe624;</div>
       </router-link>
-      世界之窗(AAAAA景区)
+      {{sightName}}
     </div>
   </div>
 </template>
@@ -15,6 +15,9 @@
 <script>
 export default {
   name: 'DetailHeader',
+  props: {
+    sightName: String
+  },
   data () {
     return {
       showBack: true,

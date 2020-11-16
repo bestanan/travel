@@ -56,7 +56,8 @@ export default {
       background #fff
       // overflow hidden
       height 0
-      padding-bottom 53.5%
+      // padding-bottom 53.5%
+      padding-bottom 100%
       width 100%
       .gallery-img
         width 100%
