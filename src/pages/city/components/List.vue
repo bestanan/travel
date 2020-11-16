@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="area" v-for="(item, key) of cities" :key="key">
+      <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <ul class="item-list">
           <li class="item border-bottom"
@@ -39,7 +39,8 @@ export default {
   props: {
     currentCity: String,
     hotCities: Array,
-    cities: Object
+    cities: Object,
+    letter: String
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.wrapper)
@@ -47,6 +48,16 @@ export default {
   updated () {
     // 当数据变化之后，需要更新swiper
     this.scroll.refresh()
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        // 利用 better-scroll 滚动到对应位置
+        this.scroll.scrollToElement(element)
+      }
+      // console.log('子组件list', this.letter)
+    }
   }
 }
 </script>

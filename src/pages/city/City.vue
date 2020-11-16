@@ -2,8 +2,13 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
-    <city-list :currentCity="currentCity" :hotCities="hotCities" :cities="cities"></city-list>
-    <city-alphabet :cities="cities"></city-alphabet>
+    <city-list
+      :currentCity="currentCity"
+      :hotCities="hotCities"
+      :cities="cities"
+      :letter="letter"
+    ></city-list>
+    <city-alphabet :cities="cities" @letterChange="handleLetterChange"></city-alphabet>
   </div>
 </template>
 
@@ -26,7 +31,8 @@ export default {
     return {
       currentCity: '',
       hotCities: [],
-      cities: {}
+      cities: {},
+      letter: ''
     }
   },
   methods: {
@@ -42,6 +48,10 @@ export default {
         this.cities = data.cities
       }
       console.log(res)
+    },
+    handleLetterChange (letter) {
+      this.letter = letter
+      // console.log('父组件city', letter)
     }
   },
   mounted () {

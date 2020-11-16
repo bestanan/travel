@@ -1,7 +1,15 @@
 <template>
   <div>
     <ul class="list">
-      <li class="item" v-for="(item, key) of cities" :key="key">{{key}}</li>
+      <li class="item"
+        v-for="item of letters"
+        :key="item"
+        :ref="item"
+        @click="handleLetterClick"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+      >{{item}}</li>
     </ul>
   </div>
 </template>
@@ -11,6 +19,50 @@ export default {
   name: 'CityAlphabet',
   props: {
     cities: Object
+  },
+  data () {
+    return {
+      touchStatus: false
+    }
+  },
+  computed: {
+    letters () {
+      const lettersArr = []
+      for (let key in this.cities) {
+        lettersArr.push(key)
+      }
+      return lettersArr
+    }
+  },
+  methods: {
+    handleLetterClick (e) {
+      const letter = e.target.innerText
+      // console.log('子组件Alphabet', letter)
+      this.$emit('letterChange', letter)
+    },
+    handleTouchStart () {
+      this.touchStatus = true
+    },
+    handleTouchMove (e) {
+      if (this.touchStatus) {
+        // 起始字母
+        const startElement = this.$refs['A'][0]
+        // 字母高度
+        const letterHeight = startElement.offsetHeight
+        // 字母 A 距离视口顶部的距离
+        const startY = startElement.getBoundingClientRect().top // 219
+        // 手指滑动的距离
+        const touchY = e.touches[0].clientY
+        // 滑到第几个字母了
+        const index = Math.floor((touchY - startY) / letterHeight)
+        if (index >= 0 && index < this.letters.length) {
+          this.$emit('letterChange', this.letters[index])
+        }
+      }
+    },
+    handleTouchEnd () {
+      this.touchStatus = false
+    }
   }
 }
 </script>
