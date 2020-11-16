@@ -22,7 +22,10 @@ export default {
   },
   data () {
     return {
-      touchStatus: false
+      touchStatus: false,
+      letterHeight: 0,
+      startY: 0,
+      timer: null
     }
   },
   computed: {
@@ -33,6 +36,14 @@ export default {
       }
       return lettersArr
     }
+  },
+  updated () {
+    // 起始字母
+    const startElement = this.$refs['A'][0]
+    // 字母高度
+    this.letterHeight = startElement.offsetHeight
+    // 字母 A 距离视口顶部的距离
+    this.startY = startElement.getBoundingClientRect().top
   },
   methods: {
     handleLetterClick (e) {
@@ -45,19 +56,18 @@ export default {
     },
     handleTouchMove (e) {
       if (this.touchStatus) {
-        // 起始字母
-        const startElement = this.$refs['A'][0]
-        // 字母高度
-        const letterHeight = startElement.offsetHeight
-        // 字母 A 距离视口顶部的距离
-        const startY = startElement.getBoundingClientRect().top // 219
-        // 手指滑动的距离
-        const touchY = e.touches[0].clientY
-        // 滑到第几个字母了
-        const index = Math.floor((touchY - startY) / letterHeight)
-        if (index >= 0 && index < this.letters.length) {
-          this.$emit('letterChange', this.letters[index])
+        if (this.timer) {
+          clearTimeout(this.timer)
         }
+        this.timer = setTimeout(() => {
+          // 手指滑动的距离
+          const touchY = e.touches[0].clientY
+          // 滑到第几个字母了
+          const index = Math.floor((touchY - this.startY) / this.letterHeight)
+          if (index >= 0 && index < this.letters.length) {
+            this.$emit('letterChange', this.letters[index])
+          }
+        }, 8)
       }
     },
     handleTouchEnd () {
