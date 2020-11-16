@@ -9,7 +9,6 @@
       </router-link>
       世界之窗(AAAAA景区)
     </div>
-    <div class="content"></div>
   </div>
 </template>
 
@@ -41,6 +40,10 @@ export default {
   },
   activated () {
     window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated () {
+    // 对全局事件解绑（否则会影响其他组件）
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -61,6 +64,7 @@ export default {
       color #fff
       font-size .4rem
   .header-fixed
+    z-index 2
     position fixed
     top 0
     left 0
@@ -77,6 +81,4 @@ export default {
       font-size .4rem
       float left
       color #fff
-  .content
-    height 50rem
 </style>
