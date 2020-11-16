@@ -5,65 +5,27 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="btn-list">
           <div class="btn-wrapper">
-            <div class="btn">北京</div>
+            <div class="btn">{{currentCity}}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="btn-list">
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
-          </div>
-          <div class="btn-wrapper">
-            <div class="btn">北京</div>
+          <div class="btn-wrapper" v-for="item of hotCities" :key="item.id">
+            <div class="btn">{{item.name}}</div>
           </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
+      <div class="area" v-for="(item, key) of cities" :key="key">
+        <div class="title border-topbottom">{{key}}</div>
         <ul class="item-list">
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-        </ul>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <ul class="item-list">
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-        </ul>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <ul class="item-list">
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-        </ul>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <ul class="item-list">
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
-          <li class="item border-bottom">阿坝藏族羌族自治州</li>
+          <li class="item border-bottom"
+            v-for="innerItem of item"
+            :key="innerItem.id"
+          >
+            {{innerItem.name}}
+          </li>
         </ul>
       </div>
     </div>
@@ -74,8 +36,17 @@
 import Bscroll from 'better-scroll'
 export default {
   name: 'CityList',
+  props: {
+    currentCity: String,
+    hotCities: Array,
+    cities: Object
+  },
   mounted () {
     this.scroll = new Bscroll(this.$refs.wrapper)
+  },
+  updated () {
+    // 当数据变化之后，需要更新swiper
+    this.scroll.refresh()
   }
 }
 </script>
