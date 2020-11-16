@@ -6,6 +6,7 @@ import router from './router'
 // 使用 fastclick 解决移动端 click 延迟 300ms 执行
 import fastClick from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './store'
 
 // 引入初始化样式
 import 'styles/reset.css'
@@ -24,6 +25,7 @@ Vue.use(VueAwesomeSwiper)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

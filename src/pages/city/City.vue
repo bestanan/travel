@@ -3,7 +3,6 @@
     <city-header></city-header>
     <city-search :cities="cities"></city-search>
     <city-list
-      :currentCity="currentCity"
       :hotCities="hotCities"
       :cities="cities"
       :letter="letter"
@@ -29,7 +28,6 @@ export default {
   },
   data () {
     return {
-      currentCity: '',
       hotCities: [],
       cities: {},
       letter: ''
@@ -43,11 +41,9 @@ export default {
       res = res.data
       if (res.ret && res.data) {
         const data = res.data
-        this.currentCity = data.city
         this.hotCities = data.hotCities
         this.cities = data.cities
       }
-      console.log(res)
     },
     handleLetterChange (letter) {
       this.letter = letter

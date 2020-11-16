@@ -5,14 +5,14 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="btn-list">
           <div class="btn-wrapper">
-            <div class="btn">{{currentCity}}</div>
+            <div class="btn">{{this.$store.state.city}}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="btn-list">
-          <div class="btn-wrapper" v-for="item of hotCities" :key="item.id">
+          <div class="btn-wrapper" v-for="item of hotCities" :key="item.id" @click="handleCityClick(item.name)">
             <div class="btn">{{item.name}}</div>
           </div>
         </div>
@@ -23,6 +23,7 @@
           <li class="item border-bottom"
             v-for="innerItem of item"
             :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
           >
             {{innerItem.name}}
           </li>
@@ -37,7 +38,6 @@ import Bscroll from 'better-scroll'
 export default {
   name: 'CityList',
   props: {
-    currentCity: String,
     hotCities: Array,
     cities: Object,
     letter: String
@@ -48,6 +48,12 @@ export default {
   updated () {
     // 当数据变化之后，需要更新swiper
     this.scroll.refresh()
+  },
+  methods: {
+    handleCityClick (name) {
+      this.$store.commit('cityChange', name)
+      this.$router.push('/')
+    }
   },
   watch: {
     letter () {
