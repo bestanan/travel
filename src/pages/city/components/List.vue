@@ -45,7 +45,9 @@ export default {
     letter: String
   },
   mounted () {
-    this.scroll = new Bscroll(this.$refs.wrapper)
+    this.scroll = new Bscroll(this.$refs.wrapper, {
+      click: true // 解决真机不能点击的问题
+    })
   },
   updated () {
     // 当数据变化之后，需要更新swiper
