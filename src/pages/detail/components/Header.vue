@@ -29,8 +29,8 @@ export default {
   },
   methods: {
     handleScroll () {
-      // 滚动距离
-      let top = document.documentElement.scrollTop
+      // 滚动距离 (兼容)
+      let top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
       if (top > 50) {
         let opacity = top / 140
         opacity = opacity > 1 ? 1 : opacity
@@ -41,10 +41,10 @@ export default {
       this.showBack = true
     }
   },
-  activated () {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  deactivated () {
+  destroyed () {
     // 对全局事件解绑（否则会影响其他组件）
     window.removeEventListener('scroll', this.handleScroll)
   }
